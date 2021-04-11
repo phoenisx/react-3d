@@ -3,19 +3,23 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc -p ./tsconfig.json && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
     "@react-three/drei": "^4.1.4",
     "@react-three/fiber": "^6.0.10",
+    "immer": "^9.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "three": "^0.127.0"
+    "react-spring": "^9.1.0",
+    "three": "^0.127.0",
+    "use-immer": "^0.5.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-reconciler": "^0.26.1",
     "@types/three": "^0.127.0",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
