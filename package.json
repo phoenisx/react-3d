@@ -14,7 +14,7 @@
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
     "react-spring": "^9.1.0",
-    "three": "^0.127.0",
+    "three": "^0.126.1",
     "use-immer": "^0.5.1"
   },
   "devDependencies": {
