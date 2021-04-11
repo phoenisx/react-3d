@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import Suzanne from "./Suzanne";
 import { BasicObjects } from "./BasicObjects";
 import { CustomBuffer } from "./CustomBuffer";
+import { Basics, Primitives } from "./pure";
 
 export const App: React.FC = () => {
   return (
@@ -16,6 +17,12 @@ export const App: React.FC = () => {
         </Route>
         <Route path="/custom-buffer">
           <CustomBuffer />
+        </Route>
+        <Route path="/pure/basics">
+          <Basics />
+        </Route>
+        <Route path="/pure/primitives">
+          <Primitives />
         </Route>
         <Route exact path="/">
           <ul>

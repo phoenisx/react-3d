@@ -15,7 +15,8 @@
     "react-router-dom": "^5.2.0",
     "react-spring": "^9.1.0",
     "three": "^0.126.1",
-    "use-immer": "^0.5.1"
+    "use-immer": "^0.5.1",
+    "zustand": "^3.4.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
