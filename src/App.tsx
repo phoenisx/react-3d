@@ -5,6 +5,7 @@ import { BasicObjects } from "./BasicObjects";
 import { CustomBuffer } from "./CustomBuffer";
 import { Basics, Primitives } from "./pure";
 import { ProbeRoutes } from "./lighting";
+import { MaterialRoutes } from "./materials";
 
 export const App: React.FC = () => {
   return (
@@ -27,6 +28,9 @@ export const App: React.FC = () => {
         </Route>
         <Route path="/lighting">
           <ProbeRoutes />
+        </Route>
+        <Route path="/materials">
+          <MaterialRoutes />
         </Route>
         <Route exact path="/">
           <ul>
