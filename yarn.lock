@@ -574,6 +574,14 @@
     utility-types "^3.10.0"
     zustand "^3.3.3"
 
+"@react-three/postprocessing@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.0.3.tgz#7e0f019612cc15b559d39998f6fe74badb96cda1"
+  integrity sha512-ZsePbNi/u6ahU6AvcGFcT17E/QSR+Tpn4p0BQRF2hXZ4hD8+cE4j8y5t1+6mvxoQu3X8jncUODVn8RLepnEITw==
+  dependencies:
+    postprocessing "^6.21.2"
+    react-merge-refs "^1.1.0"
+
 "@stitches/core@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@stitches/core/-/core-0.1.7.tgz#132d6e3bab1b3af44b6c67980d7e2d23b64703d0"
@@ -1982,6 +1990,11 @@ postcss@^8.2.1:
     colorette "^1.2.2"
     nanoid "^3.1.22"
     source-map "^0.6.1"
+
+postprocessing@^6.21.2:
+  version "6.21.3"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.21.3.tgz#6f9cd28a3d285a737d63fed8868d75668ab05886"
+  integrity sha512-EC7JTfU9+P4c5usQpemmfWUqYRguoCrgpdNuTc+j5rT//C2dOXuCI3JKYgEzBMMRm8f1QMYAEpKu+YZ4TddOpA==
 
 potpack@^1.0.1:
   version "1.0.1"

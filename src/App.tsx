@@ -6,6 +6,7 @@ import { CustomBuffer } from "./CustomBuffer";
 import { Basics, Primitives } from "./pure";
 import { ProbeRoutes } from "./lighting";
 import { MaterialRoutes } from "./materials";
+import { PostProcessRoutes } from "./post-process";
 
 export const App: React.FC = () => {
   return (
@@ -31,6 +32,9 @@ export const App: React.FC = () => {
         </Route>
         <Route path="/materials">
           <MaterialRoutes />
+        </Route>
+        <Route path="/post-process">
+          <PostProcessRoutes />
         </Route>
         <Route exact path="/">
           <ul>
