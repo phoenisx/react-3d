@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import React, { useRef } from "react";
-import { BufferAttribute, BufferGeometry } from "three";
+import * as THREE from "three";
 
 const vertices = new Float32Array([
   /* eslint-disable prettier/prettier */
@@ -15,7 +15,7 @@ const vertices = new Float32Array([
 ]);
 
 export const CustomBuffer: React.FC = () => {
-  const bufferGeometry = useRef<BufferGeometry>(null);
+  const bufferGeometry = useRef<THREE.BufferGeometry>(null);
 
   // useEffect(() => {
   //   bufferGeometry.current?.setAttribute(
@@ -32,7 +32,7 @@ export const CustomBuffer: React.FC = () => {
             ref={bufferGeometry}
             attach="geometry"
             attributes={{
-              position: new BufferAttribute(vertices, 3),
+              position: new THREE.BufferAttribute(vertices, 3),
             }}
           />
           <meshBasicMaterial attach="material" color={0xf38999} />

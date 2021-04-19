@@ -2,11 +2,7 @@ import { Box } from "@react-three/drei";
 import { Canvas, extend, Node, useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import React, { useEffect, useRef } from "react";
-import { Mesh } from "three";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { BloomPass } from "three/examples/jsm/postprocessing/BloomPass";
-import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
+import { EffectComposer, RenderPass, BloomPass, FilmPass } from "three-stdlib";
 
 extend({ EffectComposer, RenderPass, BloomPass, FilmPass });
 
@@ -21,7 +17,7 @@ declare global {
 }
 
 const Rectangle = () => {
-  const ref = useRef<Mesh>(null);
+  const ref = useRef<THREE.Mesh>(null);
 
   useFrame((_, delta) => {
     if (!ref.current) {

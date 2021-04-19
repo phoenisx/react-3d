@@ -4,7 +4,6 @@
  */
 
 import React, { useEffect, useRef } from "react";
-import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import {
   AxesHelperProps,
@@ -13,10 +12,9 @@ import {
   useFrame,
 } from "@react-three/fiber";
 import { useControls } from "leva";
-import { AxesHelper, Mesh, Object3D } from "three";
 
 const Rotate: React.FC<GroupProps> = props => {
-  const ref = useRef<Object3D>(null);
+  const ref = useRef<THREE.Object3D>(null);
   useFrame((_, time) => {
     if (!ref.current) {
       return;
@@ -29,7 +27,7 @@ const Rotate: React.FC<GroupProps> = props => {
 const AxesHelperComp: React.FC<
   AxesHelperProps & { depthTest?: boolean }
 > = props => {
-  const ref = useRef<AxesHelper>(null);
+  const ref = useRef<THREE.AxesHelper>(null);
   useEffect(() => {
     // @ts-ignore
     ref.current.material.depthTest = props.depthTest;
@@ -60,7 +58,7 @@ const Sphere: React.FC<SphereProps> = ({
   emissive = 0x000000,
   ...props
 }) => {
-  const ref = useRef<Mesh>(null);
+  const ref = useRef<THREE.Mesh>(null);
   useFrame((_, time) => {
     if (!ref.current) {
       return;

@@ -1,5 +1,5 @@
-import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 const addLight = () => {
   const color = 0xffffff;

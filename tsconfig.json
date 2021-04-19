@@ -4,9 +4,11 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": [
       "vite/client",
-      "./typings/global"
+      "./typings/global",
+      "./typings/postprocessing",
+      "./typings/nice-color-palettes"
     ],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -20,5 +22,5 @@
     "jsx": "react-jsx"
   },
   "exclude": ["node_modules"],
-  "include": ["./src"]
+  "include": ["./typings", "./src"]
 }

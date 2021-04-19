@@ -1,6 +1,5 @@
 import React, { Suspense, useRef } from "react";
-import { Group } from "three";
-import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTF } from "three-stdlib";
 import { Canvas, GroupProps, useFrame } from "@react-three/fiber";
 import { Loader, OrbitControls, Stage, useGLTF } from "@react-three/drei";
 import { useImmer } from "use-immer";
@@ -17,7 +16,7 @@ type GLTFResult = GLTF & {
 };
 
 const SuzanneModel: React.FC<GroupProps> = props => {
-  const rootRef = useRef<Group>(null);
+  const rootRef = useRef<THREE.Group>(null);
   const { nodes } = useGLTF("https://gltf.pmnd.rs/suzanne.gltf") as GLTFResult;
   const [hovered, updateHovered] = useImmer(0);
 

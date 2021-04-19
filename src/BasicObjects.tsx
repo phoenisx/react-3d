@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Canvas, MeshProps } from "@react-three/fiber";
 import { Loader, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
 import css from "./BasicObjects.module.css";
-import { BackSide } from "three";
 
 const Background = () => {
   return (
@@ -12,7 +12,7 @@ const Background = () => {
       <meshStandardMaterial
         color={0xd2452b}
         attach="material"
-        side={BackSide}
+        side={THREE.BackSide}
         metalness={0.4}
       />
     </mesh>

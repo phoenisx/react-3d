@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import * as THREE from "three";
 import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 import create from "zustand";
 
 interface StoreState {
