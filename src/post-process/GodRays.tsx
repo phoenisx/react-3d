@@ -16,14 +16,30 @@ import * as THREE from "three";
 
 import { isRef } from "../utils";
 
-import css from "./GodRays.module.css";
+const xColors = [
+  "#722D28",
+  "#6D7228",
+  "#725228",
+  "#AD1846",
+  "#AD3618",
+  "#AD1890",
+  "#127AA3",
+  "#1231A3",
+  "#12A384",
+]
 
-const COUNT = 10;
+const getStrongRandom = () =>
+  window.crypto.getRandomValues(new Uint8Array(1))[0];
+
+const COUNT = 30;
 const matrixObject = new THREE.Object3D();
 const tempColor = new THREE.Color();
 const colors = new Array(COUNT)
   .fill(0)
-  .map(() => niceColors[0][Math.floor(Math.random() * 5)]);
+  .map(() => niceColors[getStrongRandom() % 100][getStrongRandom() % 5]);
+
+const getRandomFromRange = (min: number, max: number) =>
+  Math.random() * (max - min) - Math.round((max - min) / 2);
 
 const Rectangle: React.FC = () => {
   const ref = useRef<THREE.InstancedMesh>(null);
@@ -38,30 +54,31 @@ const Rectangle: React.FC = () => {
     []
   );
 
-  const sticks = useMemo(() => {
-    const temp = [];
-    for (let i = 0; i < COUNT; i++) {
-      const t = Math.random() * 10;
-      const factor = 20 + Math.random() * 100;
-      const speed = 0.01 + Math.random() / 200;
-      const xFactor = -5 + Math.random() * 10;
-      const yFactor = -5 + Math.random() * 10;
-      const zFactor = -5 + Math.random() * 10;
-      temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 });
-    }
-    return temp;
-  }, []);
+  const boxes = useMemo(
+    () =>
+      colors.map(() => ({
+        px: 0,
+        py: 0,
+        pz: 0,
+        startAngle: getRandomFromRange(-Math.PI, Math.PI),
+      })),
+    []
+  );
 
   useEffect(() => {
     if (!ref.current) {
       return;
     }
-    sticks.forEach((stick, i) => {
-      matrixObject.position.set(
-        stick.mx + Math.random(),
-        stick.my + Math.random(),
-        stick.my + Math.random()
-      );
+    colors.forEach((_, i) => {
+      const indexFrom1 = i + 1;
+      const min = -10 * indexFrom1;
+      const max = 10 * indexFrom1;
+      const currentBox = boxes[i];
+      currentBox.px = getRandomFromRange(min, max) % 5;
+      currentBox.py = getRandomFromRange(min, max) % 4;
+      currentBox.pz = getRandomFromRange(min, max) % 5;
+      matrixObject.position.set(currentBox.px, currentBox.py, currentBox.pz);
+      matrixObject.rotation.y += getRandomFromRange(-Math.PI, Math.PI);
       matrixObject.updateMatrix();
       // @ts-ignore
       ref.current.setMatrixAt(i, matrixObject.matrix);
@@ -69,10 +86,23 @@ const Rectangle: React.FC = () => {
     ref.current.instanceMatrix.needsUpdate = true;
   }, []);
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     if (!ref.current) {
       return;
     }
+    const time = state.clock.getElapsedTime();
+    colors.forEach((_, i) => {
+      const currentBox = boxes[i];
+      currentBox.py += Math.sin(currentBox.startAngle + time * 2) * 0.01;
+      matrixObject.position.set(currentBox.px, currentBox.py, currentBox.pz);
+      matrixObject.rotation.y = Math.sin(currentBox.startAngle + time / 4);
+      matrixObject.updateMatrix();
+      // @ts-ignore
+      ref.current.setMatrixAt(i, matrixObject.matrix);
+      // console.log(">>>>>> ", i, currentBox);
+    });
+    ref.current.instanceMatrix.needsUpdate = true;
+    ref.current.rotation.y += delta / 2;
   });
 
   return (
@@ -142,7 +172,7 @@ const Sun: React.FC = () => {
   });
   const noise = useControls("Noise", {
     noise: {
-      value: 0.47,
+      value: 0.2,
       min: 0,
       max: 1,
     },
@@ -177,7 +207,7 @@ const Sun: React.FC = () => {
           />
           <HueSaturation hue={hue} saturation={saturation} />
 
-          <Vignette />
+          {/* <Vignette /> */}
         </EffectComposer>
       )}
     </>
@@ -185,9 +215,12 @@ const Sun: React.FC = () => {
 };
 
 export const GodRays: React.FC = () => {
+  const { color } = useControls("Background", {
+    color: "#904101",
+  });
   return (
     <Canvas
-      className={`root ${css.root}`}
+      className="root"
       linear
       camera={{
         fov: 75,
@@ -195,6 +228,7 @@ export const GodRays: React.FC = () => {
         position: [0, 0, 8],
       }}
     >
+      <color attach="background" args={[color]} />
       <ambientLight intensity={0.3} color="#fff" />
       {/* <pointLight intensity={2} position={[5, 5, 0]} color="#fff" /> */}
       <Rectangle />

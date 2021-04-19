@@ -6,7 +6,7 @@ import css from "./Bulb.module.css";
 /**
  * References:
  * - https://codesandbox.io/embed/r3f-particles-i-q4d2v
- * - https://codesandbox.io/s/r3f-instanced-colors-w3lwy?file=/src/Effects.js
+ * - https://codesandbox.io/s/instanced-vertex-colors-8fo01?file=/src/index.js:2154-2167
  */
 
 const Source = () => {
